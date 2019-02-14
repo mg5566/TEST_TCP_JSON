@@ -3,6 +3,7 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
@@ -15,7 +16,7 @@ public class Client_UDP {
 		 // ObjectStream
         ObjectOutputStream objectOutputStream = null;
         
-        // JSON ¸¸µé±â
+        // JSON Object
         JSONObject jobj = new JSONObject();
         jobj.put("name", "Kang");
         jobj.put("Age", new Integer(100));
@@ -28,7 +29,7 @@ public class Client_UDP {
         jobj.put("message", list);
         
         // IP
-        String serverIP = "IP";
+        String serverIP = "192.168.0.192";
         // Port
         int port = 12345;
         
@@ -40,7 +41,7 @@ public class Client_UDP {
 			
 			socket.send(packet);
 			
-			
+			socket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,6 +52,8 @@ public class Client_UDP {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        
 		
 	}
 }

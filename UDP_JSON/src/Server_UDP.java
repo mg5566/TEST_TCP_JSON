@@ -32,6 +32,7 @@ public class Server_UDP {
 				
 				System.out.println(jsonObject.toString());
 				
+				socket.close();
 			}
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -31,26 +32,32 @@ public class Server {
         try {
             
             System.out.println("before socket connect");
-            socket = server_socket.accept();    //¼­¹ö »ý¼º , Client Á¢¼Ó ´ë±â
+            socket = server_socket.accept();    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ , Client ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             System.out.println("after socket connect");
             
-            // ³»°¡ ¸¸µë
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
+            // ObjectInputStream
+//            objectInputStream = new ObjectInputStream(socket.getInputStream());
+            
+            InputStream inputStream = socket.getInputStream();
             
             // check JSON
             
-			try {
+//			try {
 				
-				jsonObject = (JSONObject)jsonParser.parse(objectInputStream.readObject().toString());
+//				jsonObject = (JSONObject)jsonParser.parse(objectInputStream.readObject().toString());
+				
+				byte[] b = null;
+				
+				inputStream.read(b, 0, 1000);
 			
-				System.out.println(jsonObject.toString());
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//				System.out.println(jsonObject.toString());
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}catch (ClassNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			
             
