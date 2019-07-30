@@ -1,0 +1,30 @@
+package test_json;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server_Receive {
+	public static void main(String[] args) {
+		
+		ServerSocket serverSocket = null;
+		Socket socket = null;
+		
+		try {
+			serverSocket = new ServerSocket(7777);
+			socket = serverSocket.accept();
+			System.out.println("server start");
+			
+			while(true) {
+				System.out.println("Wait for new Client");
+				socket = serverSocket.accept();
+				System.out.println("SUCCESS : connet client");
+				
+				Receiver receiver = new Receiver(socket);
+				receiver.start();
+			}
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
